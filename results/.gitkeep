@@ -1,0 +1,1 @@
+# Keep results directory tracked in Git while ignoring large generated artifact files.

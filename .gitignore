@@ -1,0 +1,85 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Datasets (Do NOT commit large dataset archives or extracted images)
+CIFAKE/
+data/CIFAKE/
+data/train/
+data/test/
+*.zip
+*.tar
+*.tar.gz
+
+# Trained Models (Exclude heavy binary model files, retain README)
+models/*.h5
+models/*.keras
+models/*.tflite
+models/*.savedmodel/
+!models/README.md
+
+# Generated Results & Outputs (Exclude generated metric files and figures, retain documentation)
+results/*.png
+results/*.jpg
+results/*.jpeg
+results/*.json
+results/*.csv
+!results/README.md
+!results/.gitkeep
+!data/.gitkeep
+
+# Sensitive files / Credentials
+.env
+kaggle.json
+*.pem
+*.key
