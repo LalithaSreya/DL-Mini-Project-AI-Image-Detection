@@ -284,8 +284,8 @@ def main():
         st.write("Quantitative results generated from held-out evaluation on the CIFAKE dataset:")
 
         # Summary KPIs
-        metrics_file = Path("results/metrics.json")
-        csv_file = Path("results/metrics.csv")
+        metrics_file = Path("results/metrics/metrics.json") if Path("results/metrics/metrics.json").is_file() else Path("results/metrics.json")
+        csv_file = Path("results/metrics/metrics.csv") if Path("results/metrics/metrics.csv").is_file() else Path("results/metrics.csv")
 
         if metrics_file.is_file():
             with open(metrics_file, "r") as f:
@@ -310,9 +310,9 @@ def main():
         st.markdown("#### Visual Evaluation Graphs")
         col_g1, col_g2 = st.columns(2)
 
-        cm_img = Path("results/confusion_matrix.png")
-        loss_img = Path("results/training_loss_curve.png")
-        acc_img = Path("results/training_accuracy_curve.png")
+        cm_img = Path("results/figures/confusion_matrix.png") if Path("results/figures/confusion_matrix.png").is_file() else Path("results/confusion_matrix.png")
+        loss_img = Path("results/figures/training_loss_curve.png") if Path("results/figures/training_loss_curve.png").is_file() else Path("results/training_loss_curve.png")
+        acc_img = Path("results/figures/training_accuracy_curve.png") if Path("results/figures/training_accuracy_curve.png").is_file() else Path("results/training_accuracy_curve.png")
 
         with col_g1:
             if cm_img.is_file():

@@ -1,0 +1,88 @@
+================================================================================
+DEEP LEARNING REAL-TIME MINI-PROJECT: OFFICIAL SUBMISSION DETAILS (1-PAGER)
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING | SREENIDHI UNIVERSITY
+================================================================================
+
+PROJECT TITLE:
+Deep Learning-Based Detection of AI-Generated and Real Images Using Convolutional Neural Networks
+
+ACADEMIC YEAR: 2025–2026 | B.Tech Computer Science and Engineering
+
+--------------------------------------------------------------------------------
+TEAM MEMBERS (B.Tech CSE):
+--------------------------------------------------------------------------------
+1. Bojja Sahasra          — Roll No: 2401100CSE0243
+2. Mudigonda Lalitha Sreya — Roll No: 2401100CSE0264
+3. Rohan Joshua Francis   — Roll No: 2401100CSE0275
+
+COURSE COORDINATOR / FACULTY GUIDE:
+Dr. Saritha Bantu
+Professor, Department of Computer Science and Engineering
+Sreenidhi University | Email: saritha.b@suh.edu.in
+
+================================================================================
+1. MANDATORY GITHUB REPOSITORY DETAILS
+================================================================================
+GitHub Repository Link:
+https://github.com/LalithaSreya/DL-Mini-Project-AI-Image-Detection
+(Default Branch: main)
+
+Key Deliverables & Files in Repository:
+• project.ipynb           - Self-contained Google Colab notebook (1-click GPU training)
+• app.py                  - Interactive Streamlit Web Demonstration Interface
+• main.py                 - End-to-end command-line training and evaluation pipeline
+• predict.py              - Fast single-image inference tool (outputs REAL/FAKE & %)
+• docs/Project_Report.pdf - Complete 20+ page academic report conforming to standards
+• docs/Project_Report.docx- Editable Word documentation
+• results/figures/        - High-resolution Confusion Matrix, Loss & Accuracy curves
+• results/metrics/        - Benchmark metrics exported in JSON and CSV formats
+• tests/                  - Automated test suite (12/12 unit & integration tests passing)
+
+Quick Execution Steps:
+  git clone https://github.com/LalithaSreya/DL-Mini-Project-AI-Image-Detection.git
+  cd DL-Mini-Project-AI-Image-Detection
+  pip install -r requirements.txt
+  streamlit run app.py
+
+================================================================================
+2. DATASET SPECIFICATIONS, SOURCE & ATTRIBUTION
+================================================================================
+Dataset Benchmark:
+CIFAKE: Real and AI-Generated Synthetic Images (120,000 images, 32x32 pixels, RGB)
+
+Class Distribution (Balanced 50/50):
+• REAL (Label 1): 60,000 authentic images from CIFAR-10 photographic benchmark
+• FAKE (Label 0): 60,000 synthetic images generated via Stable Diffusion v1.4
+  Across 10 semantic classes: airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck.
+
+Dataset Splits:
+• Training Set: 100,000 images (50,000 REAL / 50,000 FAKE)
+• Test Set:      20,000 images (10,000 REAL / 10,000 FAKE)
+
+Kaggle Dataset Source Link:
+https://www.kaggle.com/datasets/birdy654/cifake-real-and-ai-generated-synthetic-images
+
+Official Publication Citation:
+Bird, J. J., & Lotfi, A. (2023). "CIFAKE: Image Classification and Explainable 
+Identification of AI-Generated Synthetic Images." IEEE Access, 12, 15600-15612.
+DOI: 10.1109/ACCESS.2023.3340578
+
+National Open Data & Practical DL Alignment:
+Aligned with Government of India AIKosh platform (https://aikosh.indiaai.gov.in/)
+and fast.ai Practical Deep Learning for Coders guidelines (https://course.fast.ai/).
+
+Automated Download Script:
+  pip install kagglehub
+  python -c "import kagglehub; path = kagglehub.dataset_download('birdy654/cifake-real-and-ai-generated-synthetic-images'); print('Path:', path)"
+
+================================================================================
+3. EXPERIMENTAL PERFORMANCE & BENCHMARK RESULTS
+================================================================================
+• Deep Learning Architecture : MobileNetV2 (Transfer Learning, GAP, Dropout 0.3)
+• Test Accuracy              : 93.93% (18,786 / 20,000 correct test classifications)
+• Test Binary Cross-Entropy  : 0.1639
+• Macro-Averaged Precision   : 93.94%
+• Macro-Averaged Recall      : 93.93%
+• Macro-Averaged F1-Score    : 93.93%
+• Confusion Matrix Summary   : FAKE correctly identified: 9,376 | REAL correctly identified: 9,410
+================================================================================
