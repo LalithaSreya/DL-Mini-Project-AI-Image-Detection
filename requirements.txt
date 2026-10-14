@@ -23,3 +23,7 @@ pytest>=7.4.0
 
 # Project Report Generation (Word DOCX generation)
 python-docx>=1.1.0
+
+# Interactive Web Application & Interface
+streamlit>=1.28.0
+pandas>=1.5.0

@@ -1,0 +1,55 @@
+================================================================================
+DEEP LEARNING REAL-TIME PROJECT SUBMISSION
+DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING | SREENIDHI UNIVERSITY
+================================================================================
+
+PROJECT TITLE:
+Deep Learning-Based Detection of AI-Generated and Real Images Using Convolutional Neural Networks
+
+GITHUB REPOSITORY LINK:
+https://github.com/LalithaSreya/DL-Mini-Project-AI-Image-Detection
+
+TEAM ROLL NUMBERS & NAMES:
+1. Bojja Sahasra          - 2401100CSE0243
+2. Rohan Joshua Francis   - 2401100CSE0275
+3. Mudigonda Lalitha Sreya - 2401100CSE0264
+
+COURSE COORDINATOR / FACULTY GUIDE:
+Dr. Saritha Bantu
+Professor, Department of Computer Science and Engineering
+Sreenidhi University
+Email: saritha.b@suh.edu.in
+
+================================================================================
+REPOSITORY SUMMARY & KEY FILES
+================================================================================
+- README.md: Comprehensive project overview, dataset, methodology, results, and reproduction guide.
+- project.ipynb: Complete, self-contained Google Colab notebook with GPU acceleration.
+- app.py: Interactive Streamlit Web Interface for real-time live demonstrations.
+- main.py: End-to-end command-line pipeline for model training and evaluation.
+- predict.py: Single-image inference tool (outputs REAL/FAKE and confidence %).
+- requirements.txt: Python dependency list (TensorFlow, Scikit-Learn, Streamlit, etc.).
+- results/: High-resolution confusion matrix, loss/accuracy curves, and metrics (JSON/CSV).
+- models/: Pretrained and checkpointed weights (mobilenetv2_cifake_best.keras).
+- docs/: Project report in Microsoft Word (.docx) and PDF (.pdf) formats.
+- tests/: 12 automated unit and integration tests passing with 100% test coverage.
+
+================================================================================
+QUICK EXECUTION INSTRUCTIONS
+================================================================================
+1. Clone the repository:
+   git clone https://github.com/LalithaSreya/DL-Mini-Project-AI-Image-Detection.git
+   cd DL-Mini-Project-AI-Image-Detection
+
+2. Install dependencies:
+   pip install -r requirements.txt
+
+3. Run the interactive Streamlit Web App:
+   streamlit run app.py
+
+4. Run single-image detection:
+   python predict.py --image "CSE0243-0264-0275/sample_dataset/REAL/0000 (10).jpg"
+
+5. Run unit tests:
+   python -m pytest tests/
+================================================================================

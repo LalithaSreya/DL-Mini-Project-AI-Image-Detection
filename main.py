@@ -79,6 +79,24 @@ def parse_args():
         help="Random seed for reproducibility (default: 42).",
     )
     parser.add_argument(
+        "--steps_per_epoch",
+        type=int,
+        default=None,
+        help="Number of batch steps per training epoch (default: None for full dataset).",
+    )
+    parser.add_argument(
+        "--validation_steps",
+        type=int,
+        default=None,
+        help="Number of validation batch steps (default: None for full dataset).",
+    )
+    parser.add_argument(
+        "--test_steps",
+        type=int,
+        default=None,
+        help="Number of test batch steps for evaluation (default: None for full dataset).",
+    )
+    parser.add_argument(
         "--eval_only",
         action="store_true",
         help="Skip training and only evaluate an existing saved model.",
@@ -97,7 +115,7 @@ def main():
 
     print("=" * 70)
     print("   AI-GENERATED IMAGE DETECTION USING DEEP LEARNING (CIFAKE)   ")
-    print("   Sreenidhi Institute of Science and Technology (SNIST)       ")
+    print("   SREENIDHI UNIVERSITY                                        ")
     print("   Department of Computer Science and Engineering              ")
     print("=" * 70)
 
@@ -138,6 +156,7 @@ def main():
             image_size=img_size,
             batch_size=args.batch_size,
             results_dir=args.results_dir,
+            test_steps=args.test_steps,
         )
         print("\nEvaluation completed successfully.")
         return
@@ -152,6 +171,8 @@ def main():
         epochs=args.epochs,
         validation_split=args.validation_split,
         seed=args.seed,
+        steps_per_epoch=args.steps_per_epoch,
+        validation_steps=args.validation_steps,
     )
 
     # Generate and save loss/accuracy curves
@@ -174,6 +195,7 @@ def main():
         image_size=img_size,
         batch_size=args.batch_size,
         results_dir=args.results_dir,
+        test_steps=args.test_steps,
     )
 
     print("\n" + "=" * 70)

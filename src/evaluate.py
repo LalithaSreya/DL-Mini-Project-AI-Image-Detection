@@ -56,8 +56,12 @@ def plot_and_save_history(
     plt.ylabel("Binary Cross-Entropy Loss")
     plt.legend()
     plt.grid(True, linestyle=":", alpha=0.6)
-    plt.tight_layout()
+    # Save primary and subfolder copies
+    figures_dir = res_path / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
+
     plt.savefig(loss_path, dpi=300)
+    plt.savefig(figures_dir / "training_loss_curve.png", dpi=300)
     plt.close()
 
     # 2. Training vs Validation Accuracy Curve
@@ -75,6 +79,7 @@ def plot_and_save_history(
     plt.grid(True, linestyle=":", alpha=0.6)
     plt.tight_layout()
     plt.savefig(acc_path, dpi=300)
+    plt.savefig(figures_dir / "training_accuracy_curve.png", dpi=300)
     plt.close()
 
     return loss_path, acc_path
@@ -118,7 +123,10 @@ def plot_and_save_confusion_matrix(
             )
 
     plt.tight_layout()
+    figures_dir = res_path / "figures"
+    figures_dir.mkdir(parents=True, exist_ok=True)
     plt.savefig(cm_path, dpi=300)
+    plt.savefig(figures_dir / "confusion_matrix.png", dpi=300)
     plt.close()
     return cm_path
 
@@ -129,6 +137,7 @@ def evaluate_model(
     image_size: Tuple[int, int] = (160, 160),
     batch_size: int = 32,
     results_dir: str | Path = "results",
+    test_steps: Optional[int] = None,
 ) -> Dict[str, Any]:
     """
     Runs full evaluation on the held-out test split.
@@ -139,12 +148,15 @@ def evaluate_model(
         image_size: Input dimensions (H, W).
         batch_size: Batch size for testing.
         results_dir: Directory where metrics and figures will be saved.
+        test_steps: Number of test batches to evaluate (None for full test split).
 
     Returns:
         Dictionary of evaluated metrics.
     """
     res_path = Path(results_dir)
     res_path.mkdir(parents=True, exist_ok=True)
+    metrics_sub_dir = res_path / "metrics"
+    metrics_sub_dir.mkdir(parents=True, exist_ok=True)
 
     print("\n" + "=" * 60)
     print("EVALUATING MODEL ON HELD-OUT TEST SPLIT")
@@ -155,24 +167,19 @@ def evaluate_model(
         data_dir=data_dir,
         image_size=image_size,
         batch_size=batch_size,
+        shuffle_test=(test_steps is not None),
     )
 
+    eval_ds = test_ds.take(test_steps) if test_steps is not None else test_ds
+
     # 1. Compute loss & built-in Keras metrics
-    eval_results = model.evaluate(test_ds, verbose=1)
+    eval_results = model.evaluate(eval_ds, verbose=1)
     metric_names = model.metrics_names
     test_metrics = dict(zip(metric_names, [float(v) for v in eval_results]))
 
     # 2. Extract true labels and compute raw probability predictions
-    y_true_list = []
-    y_prob_list = []
-
-    for images, labels in test_ds:
-        preds = model.predict(images, verbose=0)
-        y_prob_list.append(preds.flatten())
-        y_true_list.append(labels.numpy().flatten())
-
-    y_true = np.concatenate(y_true_list).astype(int)
-    y_prob = np.concatenate(y_prob_list).astype(float)
+    y_prob = model.predict(eval_ds, verbose=1).flatten()
+    y_true = np.concatenate([labels.numpy().flatten() for _, labels in eval_ds]).astype(int)
     y_pred = (y_prob >= 0.5).astype(int)
 
     # 3. Compute metrics via scikit-learn
@@ -223,21 +230,24 @@ def evaluate_model(
         },
     }
 
-    # 5. Save metrics to JSON
+    # 5. Save metrics to JSON (both root and metrics subfolder)
     json_path = res_path / "metrics.json"
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(results_payload, f, indent=2)
+    with open(metrics_sub_dir / "metrics.json", "w", encoding="utf-8") as f:
+        json.dump(results_payload, f, indent=2)
     print(f"\nSaved test metrics JSON to: {json_path.resolve()}")
 
-    # 6. Save metrics to CSV
+    # 6. Save metrics to CSV (both root and metrics subfolder)
     csv_path = res_path / "metrics.csv"
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(["Metric Category", "Class / Aggregate", "Precision", "Recall", "F1-Score", "Support"])
-        writer.writerow(["Per-Class", "FAKE (0)", f"{p_per_class[0]:.4f}", f"{r_per_class[0]:.4f}", f"{f1_per_class[0]:.4f}", support[0]])
-        writer.writerow(["Per-Class", "REAL (1)", f"{p_per_class[1]:.4f}", f"{r_per_class[1]:.4f}", f"{f1_per_class[1]:.4f}", support[1]])
-        writer.writerow(["Aggregate", "Macro Average", f"{p_macro:.4f}", f"{r_macro:.4f}", f"{f1_macro:.4f}", len(y_true)])
-        writer.writerow(["Overall", "Accuracy", f"{acc:.4f}", "-", "-", len(y_true)])
+    for target_csv in [csv_path, metrics_sub_dir / "metrics.csv"]:
+        with open(target_csv, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Metric Category", "Class / Aggregate", "Precision", "Recall", "F1-Score", "Support"])
+            writer.writerow(["Per-Class", "FAKE (0)", f"{p_per_class[0]:.4f}", f"{r_per_class[0]:.4f}", f"{f1_per_class[0]:.4f}", support[0]])
+            writer.writerow(["Per-Class", "REAL (1)", f"{p_per_class[1]:.4f}", f"{r_per_class[1]:.4f}", f"{f1_per_class[1]:.4f}", support[1]])
+            writer.writerow(["Aggregate", "Macro Average", f"{p_macro:.4f}", f"{r_macro:.4f}", f"{f1_macro:.4f}", len(y_true)])
+            writer.writerow(["Overall", "Accuracy", f"{acc:.4f}", "-", "-", len(y_true)])
     print(f"Saved test metrics CSV to: {csv_path.resolve()}")
 
     # 7. Generate and save confusion matrix plot

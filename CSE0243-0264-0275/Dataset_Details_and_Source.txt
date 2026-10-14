@@ -1,0 +1,51 @@
+================================================================================
+DATASET DETAILS, CITATION & ACCESS INSTRUCTIONS
+================================================================================
+
+PROJECT:
+Deep Learning-Based Detection of AI-Generated and Real Images Using Convolutional Neural Networks
+Sreenidhi University | Department of Computer Science and Engineering
+
+1. DATASET NAME & BENCHMARK
+   CIFAKE: Real and AI-Generated Synthetic Images
+   Total Image Count: 120,000 images (32x32 pixels, RGB)
+
+2. OFFICIAL SOURCE & CITATION
+   - Kaggle Dataset Source:
+     https://www.kaggle.com/datasets/birdy654/cifake-real-and-ai-generated-synthetic-images
+   - Primary Publication Citation:
+     Bird, J. J., & Lotfi, A. (2023). "CIFAKE: Image Classification and Explainable 
+     Identification of AI-Generated Synthetic Images." IEEE Access, 12, 15600-15612.
+     DOI: 10.1109/ACCESS.2023.3340578
+   - Government of India / Open Data reference:
+     Aligned with AIKosh public dataset usage guidelines (https://aikosh.indiaai.gov.in/).
+
+3. CLASS DISTRIBUTION
+   - REAL Images (Label 1):
+     60,000 authentic images sourced from the CIFAR-10 photographic benchmark across
+     10 semantic categories (airplane, automobile, bird, cat, deer, dog, frog, horse, ship, truck).
+   - FAKE Images (Label 0):
+     60,000 synthetic images generated via Stable Diffusion v1.4 conditioned on the same 10 prompts.
+
+4. SPLIT PARTITIONS
+   - Training Split: 100,000 images (50,000 FAKE, 50,000 REAL)
+   - Held-Out Test Split: 20,000 images (10,000 FAKE, 10,000 REAL)
+
+5. AUTOMATED DATASET ACQUISITION SCRIPT
+   The dataset can be downloaded directly without manual credentials using Python:
+   ```bash
+   pip install kagglehub
+   python -c "import kagglehub; path = kagglehub.dataset_download('birdy654/cifake-real-and-ai-generated-synthetic-images'); print('Dataset downloaded to:', path)"
+   ```
+
+6. INCLUDED SAMPLE DATASET
+   For immediate offline demonstration and evaluator inspection without downloading the
+   full ~200 MB archive, 10 representative test samples are included directly in:
+     sample_dataset/
+     ├── REAL/   (5 authentic photographs)
+     └── FAKE/   (5 Stable Diffusion synthetic images)
+
+   These can be directly tested using:
+     python predict.py --image "CSE0243-0264-0275/sample_dataset/REAL/0000 (10).jpg"
+     python predict.py --image "CSE0243-0264-0275/sample_dataset/FAKE/0 (10).jpg"
+================================================================================

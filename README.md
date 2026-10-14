@@ -1,13 +1,18 @@
-# AI-Generated Image Detection Using Deep Learning
+ # AI-Generated Image Detection Using Deep Learning
 
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![TensorFlow 2.15+](https://img.shields.io/badge/TensorFlow-2.15%2B-orange.svg)](https://www.tensorflow.org/)
 [![Tests Passing](https://img.shields.io/badge/Tests-12%20Passed-brightgreen.svg)](tests/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Academic Institution**: Sreenidhi Institute of Science and Technology (Sreenidhi University)  
+**Academic Institution**: SREENIDHI UNIVERSITY  
 **Department**: Department of Computer Science and Engineering  
 **Academic Year**: 2025–2026  
+**Course Coordinator**: Dr. Saritha Bantu, Professor, Department of CSE, Sreenidhi University  
+**Team Members**:
+- **Bojja Sahasra** (`2401100CSE0243`)
+- **Rohan Joshua Francis** (`2401100CSE0275`)
+- **Mudigonda Lalitha Sreya** (`2401100CSE0264`)  
 **GitHub Repository**: [LalithaSreya/DL-Mini-Project-AI-Image-Detection](https://github.com/LalithaSreya/DL-Mini-Project-AI-Image-Detection)  
 
 ---
@@ -206,7 +211,23 @@ Class Interpretation:
 
 ---
 
-## 15. Output Files and Generated Artifacts
+## 15. Interactive Web Application (Streamlit GUI)
+For live demonstrations, presentations, and faculty reviews, launch the interactive graphical web interface:
+
+```bash
+streamlit run app.py
+```
+
+### Features of the Web Interface:
+1. **Drag-and-Drop Image Testing**: Upload any custom `.jpg`, `.png`, or `.jpeg` file for instant inference.
+2. **Benchmark Test Samples**: Select from built-in authentic and synthetic CIFAKE test images with a single click.
+3. **Visual Confidence Gauges**: Real-time progress bars showing $P(\text{REAL})$ vs. $P(\text{FAKE})$ probabilities.
+4. **Interactive Metrics Dashboard**: View test accuracy, precision, recall, F1 tables, confusion matrix heatmap, and training curves directly in the browser.
+5. **Adjustable Decision Threshold**: Real-time slider to test sensitivity variations.
+
+---
+
+## 16. Output Files and Generated Artifacts
 When the training and evaluation pipelines run, the following files are produced:
 
 ```text
@@ -225,7 +246,7 @@ results/
 
 ---
 
-## 16. Google Colab Instructions
+## 17. Google Colab Instructions
 A complete, sequential Google Colab workflow is provided in [`project.ipynb`](project.ipynb):
 1. Open [Google Colab](https://colab.research.google.com/) and upload `project.ipynb`.
 2. Navigate to **Runtime** > **Change runtime type**, select **T4 GPU**, and click Save.
@@ -238,7 +259,7 @@ A complete, sequential Google Colab workflow is provided in [`project.ipynb`](pr
 
 ---
 
-## 17. Results Section & Academic Honesty Disclosure
+## 18. Results Section & Academic Honesty Disclosure
 > **STATUS: EXPERIMENTAL RUN PENDING REAL EXECUTION**
 >
 > In accordance with academic honesty principles, this repository does **NOT** present fabricated, pre-computed, or plagiarized metrics. The codebase, unit tests (12 passing tests), preprocessing pipelines, model definition, and inference interfaces are fully implemented and verified.
@@ -251,14 +272,22 @@ A complete, sequential Google Colab workflow is provided in [`project.ipynb`](pr
 
 ---
 
-## 18. Limitations
+## 19. Limitations
 1. **Generator Specificity**: CIFAKE's synthetic class was generated exclusively with **Stable Diffusion v1.4**. While the model learns features representative of diffusion synthesis, it may exhibit reduced sensitivity against other generators (e.g., Midjourney v6, DALL-E 3, Flux) or GAN architectures.
 2. **Resolution Downsampling**: CIFAR-10 images are natively $32 \times 32$ pixels. Resizing to $160 \times 160$ allows MobileNetV2 feature extraction but does not incorporate high-resolution $1024 \times 1024$ native artifacts.
 3. **Compression & Social Media Re-encoding**: Severe JPEG compression or platform filtering can obscure fine-grained generative artifacts, altering model confidence.
 
 ---
 
-## 19. References
+## 20. Future Scope
+1. **Multi-Generator Generalization**: Extend evaluation and fine-tuning across diverse state-of-the-art diffusion and autoregressive generators (e.g., Midjourney v6, DALL-E 3, Adobe Firefly, Flux.1, and Sora) to eliminate generator-specific overfitting.
+2. **Explainable AI (XAI)**: Integrate Grad-CAM (Gradient-weighted Class Activation Mapping) heatmaps into the Streamlit interface to visualize precisely which spatial regions (e.g. textural inconsistencies, warped boundaries, unnatural reflections) triggered the synthetic classification.
+3. **Frequency-Domain & Multi-Modal Analysis**: Incorporate 2D Discrete Cosine Transform (DCT) and Fast Fourier Transform (FFT) spectral analysis to detect high-frequency artifacts left by upsampling and deconvolution operations.
+4. **Production API & Browser Extension**: Package the lightweight MobileNetV2 model into a low-latency FastAPI microservice and client-side browser extension for real-time verification of visual media across web platforms.
+
+---
+
+## 21. References
 1. **Bird, J. J., & Lotfi, A.** (2023). *CIFAKE: Image Classification and Explainable Identification of AI-Generated Synthetic Images*. IEEE Access, 12, 15600–15612.
 2. **Sandler, M., Howard, A., Zhu, M., Zhmoginov, A., & Chen, L. C.** (2018). *MobileNetV2: Inverted Residuals and Linear Bottlenecks*. Proceedings of CVPR, 4510–4520.
 3. **Krizhevsky, A.** (2009). *Learning Multiple Layers of Features from Tiny Images*. University of Toronto.
@@ -267,9 +296,9 @@ A complete, sequential Google Colab workflow is provided in [`project.ipynb`](pr
 
 ---
 
-## 20. Team Members & Project Contributors
-- **Student 1**: [Student Name Placeholder 1] (Roll No: `[21031AXXXX]`)
-- **Student 2**: [Student Name Placeholder 2] (Roll No: `[21031AXXXX]`)
-- **Student 3**: [Student Name Placeholder 3] (Roll No: `[21031AXXXX]`)
+## 22. Team Members & Course Coordinator
+- **Bojja Sahasra** (Roll No: `2401100CSE0243`)
+- **Rohan Joshua Francis** (Roll No: `2401100CSE0275`)
+- **Mudigonda Lalitha Sreya** (Roll No: `2401100CSE0264`)
 
-**Project Guide**: [Faculty Guide Name Placeholder], Assistant Professor / Associate Professor, Department of Computer Science and Engineering, Sreenidhi Institute of Science and Technology.
+**Course Coordinator / Project Guide**: **Dr. Saritha Bantu**, Professor, Department of Computer Science and Engineering, Sreenidhi University.

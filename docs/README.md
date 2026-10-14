@@ -1,6 +1,6 @@
 # Documentation & Academic Report
 
-This directory contains the university project report documentation for the Deep Learning mini-project: **"AI-Generated Image Detection Using Deep Learning"** at **Sreenidhi Institute of Science and Technology (Sreenidhi University)**, Department of Computer Science and Engineering.
+This directory contains the university project report documentation for the Deep Learning mini-project: **"AI-Generated Image Detection Using Deep Learning"** at **SREENIDHI UNIVERSITY**, Department of Computer Science and Engineering.
 
 ## Files in this Directory
 
@@ -12,7 +12,7 @@ This directory contains the university project report documentation for the Deep
 ## Institutional Alignment & Customization
 
 The project report is organized according to standard engineering university mini-project guidelines:
-- **Title Page & Student Information**: Placeholders provided for Student Name, Roll Number, Academic Year, and Department.
+- **Title Page & Student Information**: Formatted with team members: Bojja Sahasra (2401100CSE0243), Rohan Joshua Francis (2401100CSE0275), and Mudigonda Lalitha Sreya (2401100CSE0264).
 - **Certificate / Approval Page**: Academic signature lines for Project Guide, Head of Department (HOD), and External Examiner.
 - **Academic Integrity**: Clearly demarcates completed architectural and software engineering implementations from pending experimental training results on the CIFAKE dataset.
 - **Authentic Citations**: Includes citations to the original CIFAKE paper (Bird & Lotfi, 2023), MobileNetV2 (Sandler et al., 2018), CIFAR-10 (Krizhevsky, 2009), and Stable Diffusion (Rombach et al., 2022).

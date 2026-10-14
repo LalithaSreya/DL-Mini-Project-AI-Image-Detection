@@ -26,7 +26,6 @@ class InvalidDatasetStructureError(ValueError):
     """Raised when required class folders or images are missing."""
     pass
 
-
 def validate_dataset_dir(data_dir: str | Path) -> Dict[str, Path]:
     """
     Validates that the provided dataset path contains the required splits and class folders.
@@ -129,6 +128,7 @@ def load_datasets(
     batch_size: int = 32,
     validation_split: float = 0.2,
     seed: int = 42,
+    shuffle_test: bool = False,
 ) -> Tuple[tf.data.Dataset, tf.data.Dataset, tf.data.Dataset]:
     """
     Loads training, validation, and test datasets.
@@ -144,6 +144,7 @@ def load_datasets(
         batch_size: Batch size for DataLoader.
         validation_split: Fraction of training data reserved for validation.
         seed: Random seed for reproducible splitting and shuffling.
+        shuffle_test: Whether to shuffle the test dataset (useful for balanced subset evaluations).
 
     Returns:
         (train_ds, val_ds, test_ds)
@@ -186,7 +187,8 @@ def load_datasets(
         class_names=CLASS_NAMES,
         image_size=image_size,
         batch_size=batch_size,
-        shuffle=False,
+        shuffle=shuffle_test,
+        seed=seed if shuffle_test else None,
     )
 
     # Performance optimization with prefetching

@@ -27,6 +27,8 @@ def run_training(
     seed: int = 42,
     patience: int = 3,
     weights: str = "imagenet",
+    steps_per_epoch: Optional[int] = None,
+    validation_steps: Optional[int] = None,
 ) -> Tuple[tf.keras.Model, Dict[str, Any]]:
     """
     Executes the training workflow.
@@ -42,6 +44,8 @@ def run_training(
         seed: Random seed for reproducibility.
         patience: Early stopping patience epochs.
         weights: Base pretrained weights ('imagenet' or None).
+        steps_per_epoch: Number of steps (batches) per epoch (None for full split).
+        validation_steps: Number of validation steps (None for full split).
 
     Returns:
         (trained_model, history_dict)
@@ -116,6 +120,8 @@ def run_training(
             validation_data=val_ds,
             epochs=epochs,
             callbacks=callbacks,
+            steps_per_epoch=steps_per_epoch,
+            validation_steps=validation_steps,
             verbose=1,
         )
     except Exception as e:
