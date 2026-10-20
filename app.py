@@ -75,15 +75,16 @@ st.markdown(
 @st.cache_resource(show_spinner="Loading trained MobileNetV2 detector...")
 def load_detector_model(model_path: str = "models/mobilenetv2_cifake_best.keras") -> Optional[tf.keras.Model]:
     """Loads and caches the trained Keras model."""
-    path = Path(model_path)
-    if not path.is_file():
-        # Fallback to final model if best is not present
-        alt_path = Path("models/mobilenetv2_cifake_final.keras")
-        if alt_path.is_file():
-            path = alt_path
-        else:
-            return None
-    return tf.keras.models.load_model(str(path))
+    candidates = [
+        Path(model_path),
+        Path("..") / model_path,
+        Path("models/mobilenetv2_cifake_final.keras"),
+        Path("../models/mobilenetv2_cifake_final.keras"),
+    ]
+    for p in candidates:
+        if p.is_file():
+            return tf.keras.models.load_model(str(p))
+    return None
 
 
 def preprocess_pil_image(image: Image.Image, target_size: Tuple[int, int] = (160, 160)) -> np.ndarray:
@@ -112,20 +113,28 @@ def run_inference(model: tf.keras.Model, image: Image.Image, threshold: float = 
 def get_sample_images():
     """Fetches preset sample images from CIFAKE test folder or local sample dataset if available."""
     samples = {}
-    real_dir = Path("data/CIFAKE/test/REAL")
-    fake_dir = Path("data/CIFAKE/test/FAKE")
+    real_candidates = [
+        Path("data/CIFAKE/test/REAL"),
+        Path("../data/CIFAKE/test/REAL"),
+        Path("CSE0243-0264-0275/sample_dataset/REAL"),
+        Path("../CSE0243-0264-0275/sample_dataset/REAL"),
+    ]
+    fake_candidates = [
+        Path("data/CIFAKE/test/FAKE"),
+        Path("../data/CIFAKE/test/FAKE"),
+        Path("CSE0243-0264-0275/sample_dataset/FAKE"),
+        Path("../CSE0243-0264-0275/sample_dataset/FAKE"),
+    ]
 
-    if not (real_dir.is_dir() and fake_dir.is_dir()):
-        # Fallback to offline evaluation sample images
-        real_dir = Path("CSE0243-0264-0275/sample_dataset/REAL")
-        fake_dir = Path("CSE0243-0264-0275/sample_dataset/FAKE")
+    real_dir = next((p for p in real_candidates if p.is_dir()), None)
+    fake_dir = next((p for p in fake_candidates if p.is_dir()), None)
 
-    if real_dir.is_dir():
+    if real_dir and real_dir.is_dir():
         real_files = sorted(list(real_dir.glob("*.jpg")))[:3]
         for idx, f in enumerate(real_files, 1):
             samples[f"Sample Real Image #{idx}"] = f
 
-    if fake_dir.is_dir():
+    if fake_dir and fake_dir.is_dir():
         fake_files = sorted(list(fake_dir.glob("*.jpg")))[:3]
         for idx, f in enumerate(fake_files, 1):
             samples[f"Sample AI-Generated Image #{idx}"] = f

@@ -27,6 +27,12 @@ With the rapid advancements in deep generative modeling (e.g., Latent Diffusion 
 
 This university mini-project builds, evaluates, and documents a robust binary image classification system using **Transfer Learning with MobileNetV2** on the standardized **CIFAKE** dataset to distinguish between authentic natural photographs and AI-generated synthetic images.
 
+### Directory Organization: Submission vs. Preparation
+To maintain clean separation between university deliverables and student study materials, the project is structured as follows:
+- 📁 **[`SUBMISSION/`](SUBMISSION/) (Official University Package)**: Contains the clean, self-contained academic deliverables intended for faculty evaluation, including the formal report (Word & PDF), verified Colab notebook, web demo app, requirements, source modules, and demonstration guide.
+- 📁 **[`PREPARATION/`](PREPARATION/) (Personal Student Materials)**: Contains private preparation notes, technical viva Q&A, report review checklist, model verification audit, and internal diagnostic logs for personal study and oral exam defense.
+- 📁 **Project Root (Development Environment)**: Contains the full working codebase, test suites, original and repaired notebooks, and local model checkpoints.
+
 ---
 
 ## 3. Problem Statement
@@ -261,13 +267,22 @@ A complete, sequential, and fully verified Google Colab workflow is provided in 
 ---
 
 ## 18. Academic Deliverables and Submission Documentation
-All academic documentation conforming strictly to Sreenidhi University B.Tech guidelines has been prepared:
-- **Official Project Report (Word DOCX)**: [`report/AI_Generated_Image_Detection_Project_Report.docx`](report/AI_Generated_Image_Detection_Project_Report.docx)
-- **Official Project Report (PDF)**: [`report/AI_Generated_Image_Detection_Project_Report.pdf`](report/AI_Generated_Image_Detection_Project_Report.pdf)
-- **Interactive Demonstration Guide**: [`docs/demonstration_guide.md`](docs/demonstration_guide.md) — 5–8 minute viva presentation plan and web app demonstration.
-- **Viva Voce Technical Q&A**: [`docs/viva_questions.md`](docs/viva_questions.md) — 14 in-depth questions and answers covering architectures, transfer learning, metrics, and failure modes.
-- **Final Submission Verification Checklist**: [`docs/final_submission_checklist.md`](docs/final_submission_checklist.md) — 20-item comprehensive compliance matrix.
-- **Model Verification Audit**: [`docs/model_verification.md`](docs/model_verification.md) — Detailed technical audit of checkpoints, mappings, and evaluation metrics.
+All academic documentation conforming strictly to Sreenidhi University B.Tech guidelines has been organized into dedicated directories:
+
+### Official Submission Package (`SUBMISSION/`)
+- **Official Project Report (Word DOCX)**: [`SUBMISSION/report/AI_Generated_Image_Detection_Project_Report.docx`](SUBMISSION/report/AI_Generated_Image_Detection_Project_Report.docx)
+- **Official Project Report (PDF)**: [`SUBMISSION/report/AI_Generated_Image_Detection_Project_Report.pdf`](SUBMISSION/report/AI_Generated_Image_Detection_Project_Report.pdf)
+- **Interactive Demonstration Guide**: [`SUBMISSION/docs/demonstration_guide.md`](SUBMISSION/docs/demonstration_guide.md) — 5–8 minute viva presentation plan and web app demonstration.
+- **Verified Colab Training Notebook**: [`SUBMISSION/project_colab_fixed.ipynb`](SUBMISSION/project_colab_fixed.ipynb) — Executable Google Colab GPU workflow.
+- **Interactive Web App**: [`SUBMISSION/app.py`](SUBMISSION/app.py) — Live Streamlit GUI.
+- **Experimental Artifacts**: [`SUBMISSION/results/`](SUBMISSION/results/) — Figures and metrics.
+
+### Personal Student Preparation Package (`PREPARATION/`)
+- **Viva Voce Technical Q&A**: [`PREPARATION/viva_questions.md`](PREPARATION/viva_questions.md) — 14 in-depth questions and answers covering architectures, transfer learning, metrics, and failure modes.
+- **Report Review Checklist**: [`PREPARATION/report_review_checklist.md`](PREPARATION/report_review_checklist.md) — Itemized audit checklist with verification status.
+- **Final Submission Verification Checklist**: [`PREPARATION/final_submission_checklist.md`](PREPARATION/final_submission_checklist.md) — 20-item comprehensive compliance matrix.
+- **Model Verification Audit**: [`PREPARATION/model_verification.md`](PREPARATION/model_verification.md) — Detailed technical audit of checkpoints, mappings, and evaluation metrics.
+- **Internal Engineering Notes**: [`PREPARATION/internal_notes.md`](PREPARATION/internal_notes.md) — Confidential notes on accuracy bugs, hardware constraints, and viva defense talking points.
 
 ---
 

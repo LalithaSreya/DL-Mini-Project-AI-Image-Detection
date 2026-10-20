@@ -1,0 +1,47 @@
+{
+  "status": "COMPLETED",
+  "dataset": "CIFAKE",
+  "evaluation_split": "test",
+  "total_test_samples": 640,
+  "loss": 0.7594073414802551,
+  "accuracy": 0.525,
+  "macro_avg": {
+    "precision": 0.5194070842925804,
+    "recall": 0.5188586679226029,
+    "f1_score": 0.5174603174603174
+  },
+  "per_class": {
+    "FAKE (0)": {
+      "precision": 0.5502645502645502,
+      "recall": 0.6081871345029239,
+      "f1_score": 0.5777777777777777,
+      "support": 342
+    },
+    "REAL (1)": {
+      "precision": 0.48854961832061067,
+      "recall": 0.42953020134228187,
+      "f1_score": 0.45714285714285713,
+      "support": 298
+    }
+  },
+  "confusion_matrix": {
+    "order": [
+      "FAKE (0)",
+      "REAL (1)"
+    ],
+    "matrix": [
+      [
+        208,
+        134
+      ],
+      [
+        170,
+        128
+      ]
+    ],
+    "true_negatives_fake": 208,
+    "false_positives_real": 134,
+    "false_negatives_fake": 170,
+    "true_positives_real": 128
+  }
+}
