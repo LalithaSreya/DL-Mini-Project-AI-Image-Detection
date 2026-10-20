@@ -1,5 +1,0 @@
-Metric Category,Class / Aggregate,Precision,Recall,F1-Score,Support
-Per-Class,FAKE (0),0.5503,0.6082,0.5778,342
-Per-Class,REAL (1),0.4885,0.4295,0.4571,298
-Aggregate,Macro Average,0.5194,0.5189,0.5175,640
-Overall,Accuracy,0.5250,-,-,640

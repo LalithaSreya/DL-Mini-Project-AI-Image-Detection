@@ -115,15 +115,13 @@ def get_sample_images():
     samples = {}
     real_candidates = [
         Path("data/CIFAKE/test/REAL"),
-        Path("../data/CIFAKE/test/REAL"),
+        Path("data/sample_dataset/REAL"),
         Path("CSE0243-0264-0275/sample_dataset/REAL"),
-        Path("../CSE0243-0264-0275/sample_dataset/REAL"),
     ]
     fake_candidates = [
         Path("data/CIFAKE/test/FAKE"),
-        Path("../data/CIFAKE/test/FAKE"),
+        Path("data/sample_dataset/FAKE"),
         Path("CSE0243-0264-0275/sample_dataset/FAKE"),
-        Path("../CSE0243-0264-0275/sample_dataset/FAKE"),
     ]
 
     real_dir = next((p for p in real_candidates if p.is_dir()), None)
