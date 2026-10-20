@@ -110,10 +110,15 @@ def run_inference(model: tf.keras.Model, image: Image.Image, threshold: float = 
 
 
 def get_sample_images():
-    """Fetches preset sample images from the CIFAKE test folder if available."""
+    """Fetches preset sample images from CIFAKE test folder or local sample dataset if available."""
     samples = {}
     real_dir = Path("data/CIFAKE/test/REAL")
     fake_dir = Path("data/CIFAKE/test/FAKE")
+
+    if not (real_dir.is_dir() and fake_dir.is_dir()):
+        # Fallback to offline evaluation sample images
+        real_dir = Path("CSE0243-0264-0275/sample_dataset/REAL")
+        fake_dir = Path("CSE0243-0264-0275/sample_dataset/FAKE")
 
     if real_dir.is_dir():
         real_files = sorted(list(real_dir.glob("*.jpg")))[:3]

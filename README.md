@@ -7,12 +7,12 @@
 
 **Academic Institution**: SREENIDHI UNIVERSITY  
 **Department**: Department of Computer Science and Engineering  
-**Academic Year**: 2025–2026  
+**Academic Year**: 2026–2027  
 **Course Coordinator**: Dr. Saritha Bantu, Professor, Department of CSE, Sreenidhi University  
 **Team Members**:
 - **Bojja Sahasra** (`2401100CSE0243`)
-- **Rohan Joshua Francis** (`2401100CSE0275`)
 - **Mudigonda Lalitha Sreya** (`2401100CSE0264`)  
+- **Rohan Joshua Francis** (`2401100CSE0275`)
 **GitHub Repository**: [LalithaSreya/DL-Mini-Project-AI-Image-Detection](https://github.com/LalithaSreya/DL-Mini-Project-AI-Image-Detection)  
 
 ---
@@ -247,19 +247,31 @@ results/
 ---
 
 ## 17. Google Colab Instructions
-A complete, sequential Google Colab workflow is provided in [`project.ipynb`](project.ipynb):
-1. Open [Google Colab](https://colab.research.google.com/) and upload `project.ipynb`.
+A complete, sequential, and fully verified Google Colab workflow is provided in [`project_colab_fixed.ipynb`](project_colab_fixed.ipynb) (with the original notebook preserved at [`project.ipynb`](project.ipynb)):
+1. Open [Google Colab](https://colab.research.google.com/) and upload [`project_colab_fixed.ipynb`](project_colab_fixed.ipynb).
 2. Navigate to **Runtime** > **Change runtime type**, select **T4 GPU**, and click Save.
 3. Follow the notebook cells sequentially:
-   - Cell 1–2: Environment setup and library installation.
-   - Cell 3–4: Dataset path configuration (edit `DATA_DIR` to your path).
-   - Cell 5–7: Dataset loading and model construction.
-   - Cell 8–10: Training, metric visualization, and test evaluation.
-   - Cell 11: Single-image prediction with sample visual demonstration.
+   - Cell 1–2: Environment setup, GPU verification, and library installation (`kagglehub`, `tensorflow`, `matplotlib`, `scikit-learn`).
+   - Cell 3–4: Automated dataset download via `kagglehub` and directory validation.
+   - Cell 5–7: Dataset pipeline construction with tf.data streaming and MobileNetV2 model construction.
+   - Cell 8–10: GPU training (5 epochs), training history visualization, and test evaluation.
+   - Cell 11: Prediction demonstration on unseen test samples.
+4. Download the trained artifacts (`mobilenetv2_cifake_best.keras`, `training_history.json`, figures, and metrics) from Google Colab into your local project repository under `models/` and `results/`.
 
 ---
 
-## 18. Results Section & Academic Honesty Disclosure
+## 18. Academic Deliverables and Submission Documentation
+All academic documentation conforming strictly to Sreenidhi University B.Tech guidelines has been prepared:
+- **Official Project Report (Word DOCX)**: [`report/AI_Generated_Image_Detection_Project_Report.docx`](report/AI_Generated_Image_Detection_Project_Report.docx)
+- **Official Project Report (PDF)**: [`report/AI_Generated_Image_Detection_Project_Report.pdf`](report/AI_Generated_Image_Detection_Project_Report.pdf)
+- **Interactive Demonstration Guide**: [`docs/demonstration_guide.md`](docs/demonstration_guide.md) — 5–8 minute viva presentation plan and web app demonstration.
+- **Viva Voce Technical Q&A**: [`docs/viva_questions.md`](docs/viva_questions.md) — 14 in-depth questions and answers covering architectures, transfer learning, metrics, and failure modes.
+- **Final Submission Verification Checklist**: [`docs/final_submission_checklist.md`](docs/final_submission_checklist.md) — 20-item comprehensive compliance matrix.
+- **Model Verification Audit**: [`docs/model_verification.md`](docs/model_verification.md) — Detailed technical audit of checkpoints, mappings, and evaluation metrics.
+
+---
+
+## 19. Results Section & Academic Honesty Disclosure
 > **STATUS: EXPERIMENTAL RUN PENDING REAL EXECUTION**
 >
 > In accordance with academic honesty principles, this repository does **NOT** present fabricated, pre-computed, or plagiarized metrics. The codebase, unit tests (12 passing tests), preprocessing pipelines, model definition, and inference interfaces are fully implemented and verified.
@@ -272,14 +284,14 @@ A complete, sequential Google Colab workflow is provided in [`project.ipynb`](pr
 
 ---
 
-## 19. Limitations
+## 20. Limitations
 1. **Generator Specificity**: CIFAKE's synthetic class was generated exclusively with **Stable Diffusion v1.4**. While the model learns features representative of diffusion synthesis, it may exhibit reduced sensitivity against other generators (e.g., Midjourney v6, DALL-E 3, Flux) or GAN architectures.
 2. **Resolution Downsampling**: CIFAR-10 images are natively $32 \times 32$ pixels. Resizing to $160 \times 160$ allows MobileNetV2 feature extraction but does not incorporate high-resolution $1024 \times 1024$ native artifacts.
 3. **Compression & Social Media Re-encoding**: Severe JPEG compression or platform filtering can obscure fine-grained generative artifacts, altering model confidence.
 
 ---
 
-## 20. Future Scope
+## 21. Future Scope
 1. **Multi-Generator Generalization**: Extend evaluation and fine-tuning across diverse state-of-the-art diffusion and autoregressive generators (e.g., Midjourney v6, DALL-E 3, Adobe Firefly, Flux.1, and Sora) to eliminate generator-specific overfitting.
 2. **Explainable AI (XAI)**: Integrate Grad-CAM (Gradient-weighted Class Activation Mapping) heatmaps into the Streamlit interface to visualize precisely which spatial regions (e.g. textural inconsistencies, warped boundaries, unnatural reflections) triggered the synthetic classification.
 3. **Frequency-Domain & Multi-Modal Analysis**: Incorporate 2D Discrete Cosine Transform (DCT) and Fast Fourier Transform (FFT) spectral analysis to detect high-frequency artifacts left by upsampling and deconvolution operations.
@@ -287,7 +299,7 @@ A complete, sequential Google Colab workflow is provided in [`project.ipynb`](pr
 
 ---
 
-## 21. References
+## 22. References
 1. **Bird, J. J., & Lotfi, A.** (2023). *CIFAKE: Image Classification and Explainable Identification of AI-Generated Synthetic Images*. IEEE Access, 12, 15600–15612.
 2. **Sandler, M., Howard, A., Zhu, M., Zhmoginov, A., & Chen, L. C.** (2018). *MobileNetV2: Inverted Residuals and Linear Bottlenecks*. Proceedings of CVPR, 4510–4520.
 3. **Krizhevsky, A.** (2009). *Learning Multiple Layers of Features from Tiny Images*. University of Toronto.
@@ -296,9 +308,9 @@ A complete, sequential Google Colab workflow is provided in [`project.ipynb`](pr
 
 ---
 
-## 22. Team Members & Course Coordinator
+## 23. Team Members & Course Coordinator
 - **Bojja Sahasra** (Roll No: `2401100CSE0243`)
-- **Rohan Joshua Francis** (Roll No: `2401100CSE0275`)
 - **Mudigonda Lalitha Sreya** (Roll No: `2401100CSE0264`)
+- **Rohan Joshua Francis** (Roll No: `2401100CSE0275`)
 
 **Course Coordinator / Project Guide**: **Dr. Saritha Bantu**, Professor, Department of Computer Science and Engineering, Sreenidhi University.
